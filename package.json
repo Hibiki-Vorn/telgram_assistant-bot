@@ -11,6 +11,8 @@
 		"wrangler": "^4.63.0"
 	},
 	"dependencies": {
-		"mathjs": "^15.1.0"
+		"crypto-js": "^4.2.0",
+		"mathjs": "^15.1.0",
+		"telegram-markdown-v2": "^0.0.4"
 	}
 }

@@ -1,3 +1,5 @@
+import { convert } from "telegram-markdown-v2";
+
 export const res = () => new Response("OK", { status: 200 });
 
 export const setTyping = (BOT_TOKEN, chatId, message_id) => setInterval(
@@ -23,8 +25,8 @@ export const sendMessage = async (BOT_TOKEN, chatId, text) => await fetch(
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             chat_id: chatId,
-            text: text.replace(/\\/g, '\\\\').replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1'),
-            parse_mode: "MarkdownV2"
+            text: convert(text),
+            parse_mode: "markdownV2"
         })
     }
 );
@@ -37,11 +39,25 @@ export const replyMessage = async (BOT_TOKEN, reply_to_message_id = null, chatId
         body: JSON.stringify({
             reply_to_message_id,
             chat_id: chatId,
-            text: text.replace(/\\/g, '\\\\').replace(/([_*[\]()~`>#+\-=|{}.!])/g, '\\$1'),
-            parse_mode: "MarkdownV2"
+            text: convert(text),
+            parse_mode: "markdownV2"
         })
     }
 );
+
+export const sendPhoto = async (BOT_TOKEN, chatId, photo, caption) => await fetch(
+    `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`,
+    {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            photo,
+            caption: convert(caption),
+            parse_mode: "markdownV2"
+        })
+    }
+)
 
 export const sendHTMLMessage = async (BOT_TOKEN, chatId, html) => await fetch(
     `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,

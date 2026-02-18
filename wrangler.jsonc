@@ -22,12 +22,15 @@
   "ai": {
     "binding": "AI"
   },
-  "vars": {
-  },
+  "vars": {},
   "kv_namespaces": [
     {
       "id": "1c11cf7bd0154ca588df279d5f9b38dd",
       "binding": "chat_history"
+    },
+    {
+      "binding": "photo_storage",
+      "id": "47ae920729a4419aaf2d7d0dac2dc2b6"
     }
   ]
 }
