@@ -8,6 +8,7 @@
 		"start": "wrangler dev"
 	},
 	"devDependencies": {
+		"@types/crypto-js": "^4.2.2",
 		"wrangler": "^4.63.0"
 	},
 	"dependencies": {

@@ -47,7 +47,7 @@ export const tools = [
     },
     {
         name: "generate_image",
-        description: "Generate an image based on a text prompt. Required arguments: prompt (the description of the image to generate).",
+        description: "Generate an image based on a text prompt by another model. No prompt limitation and it can generate any images. Required arguments: prompt (the description of the image to generate).",
         parameters: {
             type: "object",
             properties: {
@@ -125,7 +125,7 @@ export const execTool = async (tool_call) => {
 
             const input = { prompt };
             let imageResp = await globalThis.AI.run(
-                "@cf/bytedance/stable-diffusion-xl-lightning",
+                "@cf/stabilityai/stable-diffusion-xl-base-1.0",
                 input
             );
 
@@ -187,8 +187,7 @@ export const execTool = async (tool_call) => {
             
 
             return {
-                toolResult: "Image generated and sent to user.",
-                hiddenResult: `<img src="data:image/jpeg;base64,${base64Image}"/>`
+                toolResult: "Image generated successfully and sent to the user.",
             };
         }
 
